@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表</title>
+	<style>
+		body{
+			text-align: center;
+		}
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<canvas width=600 height=600 id="can"></canvas>
+</body>
+<script>
+	var o=can.getContext("2d");
+	time();
+	setInterval(time,1000);
+	function time(){
+		o.clearRect(0,0,600,600);
+		o.save();
+		o.beginPath();
+		o.lineWidth=5;
+		o.translate(300,300);
+		o.arc(0,0,250,0,Math.PI*2);
+		o.stroke();
+		o.closePath();
+
+		o.beginPath();
+		o.lineWidth=2;
+		o.arc(0,0,244,0,Math.PI*2);
+		o.stroke();
+		o.closePath();
+
+		o.save();
+		for (var i = 0; i < 12; i++) {
+			o.beginPath();
+			o.rotate(Math.PI/6)
+			o.lineWidth=5;
+			o.lineTo(244,0);
+			o.lineTo(225,0);
+			o.stroke();
+			o.closePath();
+		};
+		o.restore();
+
+
+		o.save();
+		for (var i = 0; i <60; i++) {
+			o.beginPath();
+			o.strokeStyle="#32d";
+			if(i%5!=0){
+				o.lineWidth=3;
+				o.lineTo(244,0);
+				o.lineTo(235,0);
+				o.stroke();
+			}
+			o.rotate(Math.PI/30);
+
+			o.closePath();
+		};
+		o.restore();
+	
+
+
+		/*time*/
+		var tady=new Date();
+		var h=tady.getHours();
+		h=h>=12?h-12:h;
+		var m=tady.getMinutes();
+		var s=tady.getSeconds();
+		var hr=h*Math.PI/6+m*Math.PI/360+s*Math.PI/21600;
+		var mr=m*Math.PI/30+s*Math.PI/1800;
+		var sr=s*Math.PI/30;
+
+		o.save();
+		o.rotate(-Math.PI/2);
+		
+
+		o.save();
+		o.beginPath();
+		o.strokeStyle="#23f";
+		o.lineWidth=5;
+		o.rotate(hr);
+		o.lineTo(-20,0);
+		o.lineTo(100,0);
+		o.stroke();
+		o.closePath();
+		o.restore();
+
+		o.save();
+		o.beginPath();
+		o.strokeStyle="#29f";
+		o.lineWidth=4;
+		o.rotate(mr);
+		o.lineTo(-30,0);
+		o.lineTo(140,0);
+		o.stroke();
+		o.closePath();
+		o.restore()
+		
+
+		o.save();
+		o.beginPath();
+		o.strokeStyle="#2ff";
+		o.lineWidth=2;
+		o.rotate(sr);
+		o.lineTo(-40,0);
+		o.lineTo(170,0);
+		o.stroke();
+		o.closePath();
+		o.restore();
+
+		o.restore();
+
+		
+		o.restore();
+		
+	}
+	
+
+</script>
+</html>
